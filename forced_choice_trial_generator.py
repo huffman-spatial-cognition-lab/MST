@@ -14,11 +14,11 @@ will help minimize any influence of difficulty of encoding or retrieval.
 
 During encoding, participants will view images from A, B, C, and D.
 
-During test, participants will view images as paired above. Note, in all cases,
-the correct image will be the XYZa.jpg while the incorrect image will be the
-XYZb.jpg image.
+During the test phase, participants will view images as paired above. Note, in 
+all cases, the correct image will be the XYZa.jpg while the incorrect image 
+will be the XYZb.jpg image.
 
-Written by Derek J. Huffan in October 2021 (Copyright Derek J. Huffman 2021)
+Written by Derek J. Huffman in October 2021 (Copyright Derek J. Huffman 2021)
 """
 
 import numpy as np
@@ -135,10 +135,12 @@ def generate_test_trials(img_cond_arr, bins, img_per_cond=35):
     -------
     out : a 2d numpy.array
         A 2d numpy.array with the test trials. The rows of the array are the
-        trials and the columns represent the images (with left/right locations
-        implied by the columns of the array; i.e., column 0 is the image to be
-        presented on the left side of the screen and column 1 is the image to
-        be presented on the right side of the screen).
+        trials and the first two columns represent the images (with left/right 
+        locations implied by the columns of the array; i.e., column 0 is the 
+        image to be presented on the left side of the screen and column 1 is 
+        the image to be presented on the right side of the screen). Column 2
+        contains the trial-type information (i.e., A-A', B-C', D-X) and column
+        3 contains the lure bin information (i.e., from 1 to 5).
     """
     a_aprime = np.column_stack((img_cond_arr[0, :], img_cond_arr[0, :]))
     b_cprime = np.column_stack((img_cond_arr[1, :], img_cond_arr[2, :]))
@@ -177,10 +179,12 @@ def generate_trials(filename, num_cond=5, img_per_cond=35):
         A 1d numpy.array with the encoding trials (i.e., image names).
     test_trials : a 2d numpy.array
         A 2d numpy.array with the test trials. The rows of the array are the
-        trials and the columns represent the images (with left/right locations
-        implied by the columns of the array; i.e., column 0 is the image to be
-        presented on the left side of the screen and column 1 is the image to
-        be presented on the right side of the screen).
+        trials and the first two columns represent the images (with left/right 
+        locations implied by the columns of the array; i.e., column 0 is the 
+        image to be presented on the left side of the screen and column 1 is 
+        the image to be presented on the right side of the screen). Column 2
+        contains the trial-type information (i.e., A-A', B-C', D-X) and column
+        3 contains the lure bin information (i.e., from 1 to 5).
     """
     imgs, bins = generate_matched_bins_imgs(filename, num_cond, img_per_cond)
     enc_trials = generate_enc_trials(imgs, num_cond)
